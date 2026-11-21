@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Shopping - Electronics</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/customer.css">
+</head>
+<body class="shop">
+<div id="app-header"></div>
+<section class="hero"><div class="container">
+<h1>Everything for your desk, pocket and bag.</h1>
+<p>Live stock counts on every product. Pay by cash, or use the credit limit the store gives you.</p>
+<form id="heroSearch" class="hero-search"><input id="heroQ" type="search" placeholder="Search by product name or ID" aria-label="Search products"><button class="btn btn-probe" type="submit">Search products</button></form>
+</div></section>
+<div class="container"><div id="catTiles" class="chips"></div><div id="sections"><div class="loading">Loading products...</div></div></div>
+<div id="app-footer"></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/api/firebase-config.js"></script>
+  <script src="../js/common/session.js"></script>
+  <script src="../js/api/auth-api.js"></script>
+  <script src="../js/api/database-api.js"></script>
+  <script src="../js/api/storage-api.js"></script>
+  <script src="../js/common/utils.js"></script>
+  <script src="../js/common/validation.js"></script>
+  <script src="../js/common/guard.js"></script>
+  <script src="../js/common/pagination.js"></script>
+  <script src="../js/common/cookies.js"></script>
+  <script src="../js/common/bill.js"></script>
+  <script src="../js/common/demo-store.js"></script>
+  <script src="../js/customer/shop.js"></script>
+  <script src="../js/customer/cart.js"></script>
+  <script src="../js/customer/wishlist.js"></script>
+  <script src="../js/customer/layout.js"></script>
+  <script src="../js/customer/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My profile - Online Shopping</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/customer.css">
+</head>
+<body class="shop">
+<div id="app-header"></div>
+<div class="container page" id="profilePage" style="max-width:640px"><h1>My profile</h1><div id="profileMsg" class="message"></div>
+<form id="profileForm" class="panel" novalidate><div class="field"><label for="name">Name</label><input id="name" type="text" ><span class="field-error" data-for="name"></span></div><div class="field"><label for="email">Email (cannot be changed)</label><input id="email" type="email" readonly><span class="field-error" data-for="email"></span></div><div class="field"><label for="mobile">Mobile number</label><input id="mobile" type="tel" maxlength="10" inputmode="numeric"><span class="field-error" data-for="mobile"></span></div><button id="saveBtn" class="btn" type="submit">Save changes</button></form>
+<div class="panel"><h2>Credit</h2><dl class="kv"><dt>Credit limit</dt><dd id="cLimit">-</dd><dt>Credit used</dt><dd id="cUsed">-</dd><dt>Available</dt><dd id="cAvail">-</dd></dl><p class="hint">Only the store admin can change your credit limit.</p></div>
+<div class="panel"><h2>Email</h2><div id="verState"></div></div></div>
+<div id="app-footer"></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/api/firebase-config.js"></script>
+  <script src="../js/common/session.js"></script>
+  <script src="../js/api/auth-api.js"></script>
+  <script src="../js/api/database-api.js"></script>
+  <script src="../js/api/storage-api.js"></script>
+  <script src="../js/common/utils.js"></script>
+  <script src="../js/common/validation.js"></script>
+  <script src="../js/common/guard.js"></script>
+  <script src="../js/common/pagination.js"></script>
+  <script src="../js/common/cookies.js"></script>
+  <script src="../js/common/bill.js"></script>
+  <script src="../js/common/demo-store.js"></script>
+  <script src="../js/customer/shop.js"></script>
+  <script src="../js/customer/cart.js"></script>
+  <script src="../js/customer/wishlist.js"></script>
+  <script src="../js/customer/layout.js"></script>
+  <script src="../js/customer/profile.js"></script>
+</body>
+</html>

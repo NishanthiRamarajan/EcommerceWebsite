@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reports - Admin</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="admin" data-page="reports-customers" data-report="customers">
+<div class="admin-shell"><aside id="sidebar"></aside><div class="admin-main"><header id="topbar"></header><main class="admin-content">
+<h1>Customer Reports</h1><p class="hint">Firestore customer records and browser-local order summaries are kept separate.</p><div class="toolbar"><div class="grow"><label for="repType">Firestore report</label><select id="repType"></select></div><div class="grow"><label for="reportSearch">Search current report</label><input id="reportSearch" type="search" placeholder="Customer, email, order or ID"></div><div id="reportFilterBox" class="hidden"><label for="reportFilter">Filter</label><select id="reportFilter"></select></div><div class="date-field"><label for="dFrom">From date</label><input id="dFrom" type="date"></div><div class="date-field"><label for="dTo">To date</label><input id="dTo" type="date"></div><button class="btn" id="runBtn" type="button">Run report</button><button class="btn btn-ghost" id="exportReport" type="button" disabled>Download CSV</button></div><div id="summary" class="summary-line"></div><div class="table-wrap"><table class="data" id="repTable"></table></div><div id="pager" class="pager"></div>
+<section class="panel"><h2>Browser-local customer purchases</h2><p class="hint">These totals are calculated from orders saved in this browser only. They are separate from Firestore customer credit and profile records.</p><div id="localCustomerSummary" class="summary-line"></div><div class="toolbar"><div class="grow"><label for="localCustomerSearch">Search local purchases</label><input id="localCustomerSearch" type="search" placeholder="Customer or email"></div><button class="btn btn-ghost" id="exportLocalCustomers" type="button">Download local CSV</button></div><div class="table-wrap"><table class="data" id="localCustomerTable"></table></div></section>
+</main></div></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/api/firebase-config.js"></script>
+  <script src="../js/common/session.js"></script>
+  <script src="../js/api/auth-api.js"></script>
+  <script src="../js/api/database-api.js"></script>
+  <script src="../js/api/storage-api.js"></script>
+  <script src="../js/common/utils.js"></script>
+  <script src="../js/common/validation.js"></script>
+  <script src="../js/common/guard.js"></script>
+  <script src="../js/common/pagination.js"></script>
+  <script src="../js/common/cookies.js"></script>
+  <script src="../js/common/bill.js"></script>
+  <script src="../js/common/demo-store.js"></script>
+  <script src="../js/admin/admin-layout.js"></script>
+  <script src="../js/admin/reports.js"></script>
+</body>
+</html>

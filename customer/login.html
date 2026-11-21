@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in - Online Shopping</title>
+  <link rel="stylesheet" href="../css/common.css">
+</head>
+<body class="auth-page">
+<main class="auth-card">
+  <a class="brand-line" href="home.html">ONLINE SHOPPING</a>
+  <p class="auth-kicker">YOUR ACCOUNT</p>
+  <h1>Welcome back</h1>
+  <p class="auth-intro">Sign in with your account. We’ll take you to the shop or admin dashboard automatically.</p>
+  <div id="message" class="message" role="status" aria-live="polite"></div>
+  <form id="loginForm" novalidate>
+    <div class="field">
+      <label for="email">Email address</label>
+      <input id="email" type="email" autocomplete="email" required>
+      <span class="field-error" data-for="email"></span>
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input id="password" type="password" autocomplete="current-password" required>
+      <span class="field-error" data-for="password"></span>
+    </div>
+    <button id="loginBtn" class="btn btn-block" type="submit">Sign in</button>
+  </form>
+  <button id="resendAdminVerification" class="btn btn-ghost btn-block hidden" type="button">Resend admin verification email</button>
+  <div class="links"><a href="register.html">Create a customer account</a><a href="reset-password.html">Forgot password?</a></div>
+</main>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/api/firebase-config.js"></script>
+  <script src="../js/common/session.js"></script>
+  <script src="../js/api/auth-api.js"></script>
+  <script src="../js/api/database-api.js"></script>
+  <script src="../js/api/storage-api.js"></script>
+  <script src="../js/common/utils.js"></script>
+  <script src="../js/common/validation.js"></script>
+  <script src="../js/common/guard.js"></script>
+  <script src="../js/common/pagination.js"></script>
+  <script src="../js/common/cookies.js"></script>
+  <script src="../js/common/bill.js"></script>
+  <script src="../js/customer/auth.js"></script>
+</body>
+</html>

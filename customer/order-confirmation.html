@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order confirmation - Online Shopping</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/customer.css">
+</head>
+<body class="shop">
+<div id="app-header"></div>
+<main class="container page" id="confirmationPage">
+  <div id="confirmationMessage" aria-live="polite"></div>
+  <div id="confirmationActions" class="modal-actions hidden">
+    <a class="btn btn-ghost" href="#invoice">View invoice</a>
+    <button class="btn" id="printInvoice" type="button">Print invoice</button>
+    <a class="btn btn-ghost" href="orders.html">My orders</a>
+  </div>
+  <section id="invoice" class="panel hidden"></section>
+</main>
+<div id="app-footer"></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/api/firebase-config.js"></script>
+  <script src="../js/common/session.js"></script>
+  <script src="../js/api/database-api.js"></script>
+  <script src="../js/common/utils.js"></script>
+  <script src="../js/common/validation.js"></script>
+  <script src="../js/common/guard.js"></script>
+  <script src="../js/common/pagination.js"></script>
+  <script src="../js/common/cookies.js"></script>
+  <script src="../js/common/bill.js"></script>
+  <script src="../js/common/demo-store.js"></script>
+  <script src="../js/customer/shop.js"></script>
+  <script src="../js/customer/cart.js"></script>
+  <script src="../js/customer/wishlist.js"></script>
+  <script src="../js/customer/layout.js"></script>
+  <script src="../js/customer/order-confirmation.js"></script>
+</body>
+</html>

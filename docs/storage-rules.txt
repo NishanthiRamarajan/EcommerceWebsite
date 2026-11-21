@@ -1,0 +1,22 @@
+// Firebase console > Storage > Rules (image URLs work without Storage).
+// Admin access is read from users/{uid} in the default Firestore database.
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isAdmin() {
+      return request.auth != null
+        && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'Admin'
+        && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.isActive == true;
+    }
+
+    match /products/{file} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+                            && request.auth.token.email_verified == true
+                            && request.resource.size < 2 * 1024 * 1024
+                            && request.resource.contentType.matches('image/.*');
+      allow delete: if isAdmin()
+                    && request.auth.token.email_verified == true;
+    }
+  }
+}

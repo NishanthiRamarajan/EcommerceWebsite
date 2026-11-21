@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Admin</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="admin" data-page="dashboard" >
+<div class="admin-shell"><aside id="sidebar"></aside><div class="admin-main"><header id="topbar"></header><main class="admin-content">
+<h1>Dashboard</h1><div id="stats" class="stat-grid"><div class="loading">Loading...</div></div><h2>Latest Firestore orders</h2><p class="hint">These records come from Firestore. Browser-local orders are shown separately below.</p><div class="table-wrap"><table class="data"><thead><tr><th>Order</th><th>Customer</th><th>Date</th><th class="num">Total</th><th>Status</th></tr></thead><tbody id="recent"></tbody></table></div>
+</main></div></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/api/firebase-config.js"></script>
+  <script src="../js/common/session.js"></script>
+  <script src="../js/api/auth-api.js"></script>
+  <script src="../js/api/database-api.js"></script>
+  <script src="../js/api/storage-api.js"></script>
+  <script src="../js/common/utils.js"></script>
+  <script src="../js/common/validation.js"></script>
+  <script src="../js/common/guard.js"></script>
+  <script src="../js/common/pagination.js"></script>
+  <script src="../js/common/cookies.js"></script>
+  <script src="../js/common/bill.js"></script>
+  <script src="../js/common/demo-store.js"></script>
+  <script src="../js/admin/admin-layout.js"></script>
+  <script src="../js/admin/dashboard.js"></script>
+</body>
+</html>

@@ -1,7 +1,29 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Admin - Customers</title><link rel="stylesheet" href="../css/common.css"></head><body>
-<nav><b>Admin</b><a href="inventory.html">Inventory</a><a href="customers.html">Customers</a><button onclick="logout()">Logout</button></nav>
-<main><div class="card"><input id="sq" placeholder="Search name or email">
-<div class="tw"><table><thead><tr><th>Name</th><th>Email</th><th>Mobile</th><th>Credit Limit</th><th>Used</th><th>Available</th><th>Status</th><th>Actions</th></tr></thead><tbody id="tb"></tbody></table></div><div class="pg" id="pg"></div></div></main>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script>var ROOT="../";</script><script src="../js/firebase-config.js"></script><script src="../js/common.js"></script><script src="../js/api.js"></script><script src="../js/customers.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customers - Admin</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="admin" data-page="customers" >
+<div class="admin-shell"><aside id="sidebar"></aside><div class="admin-main"><header id="topbar"></header><main class="admin-content">
+<h1>Customer Management</h1><p class="hint">Credit limit, used, and available values below are Firestore customer records. Browser-local checkout credit usage is separate and is not changed by Firestore repayments.</p><div class="toolbar"><div class="grow"><label for="fQ">Search customers</label><input id="fQ" type="search" placeholder="Name, email, mobile or ID"></div></div><div class="table-wrap"><table class="data"><thead><tr><th>Customer</th><th>Email</th><th>Mobile</th><th class="num">Firestore credit limit</th><th class="num">Firestore credit used</th><th class="num">Firestore available</th><th>Status</th><th>Actions</th></tr></thead><tbody id="custRows"></tbody></table></div><div id="pager" class="pager"></div><div class="modal" id="viewModal"><div class="modal-box"><h2>Customer profile</h2><div id="viewBody"></div><div class="modal-actions"><button class="btn btn-ghost" data-close type="button">Close</button></div></div></div><div class="modal" id="limModal"><div class="modal-box"><h2>Update Firestore credit limit</h2><p id="limName" class="muted"></p><form id="limForm" novalidate><div class="field"><label for="limVal">Firestore credit limit in rupees (whole number)</label><input id="limVal" type="number" min="0" step="1"><span class="field-error" data-for="limVal"></span></div><div class="modal-actions"><button class="btn btn-ghost" data-close type="button">Cancel</button><button class="btn" type="submit">Save limit</button></div></form></div></div><div class="modal" id="payModal"><div class="modal-box"><h2>Record a Firestore credit payment</h2><p id="payName" class="muted"></p><p class="hint">This repayment updates Firestore only. Browser-local checkout credit usage is not changed.</p><form id="payForm" novalidate><div class="field"><label for="payVal">Amount received in rupees</label><input id="payVal" type="number" min="1" step="1"><span class="field-error" data-for="payVal"></span></div><div class="modal-actions"><button class="btn btn-ghost" data-close type="button">Cancel</button><button class="btn" type="submit">Reduce Firestore credit used</button></div></form></div></div>
+</main></div></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/api/firebase-config.js"></script>
+  <script src="../js/common/session.js"></script>
+  <script src="../js/api/auth-api.js"></script>
+  <script src="../js/api/database-api.js"></script>
+  <script src="../js/api/storage-api.js"></script>
+  <script src="../js/common/utils.js"></script>
+  <script src="../js/common/validation.js"></script>
+  <script src="../js/common/guard.js"></script>
+  <script src="../js/common/pagination.js"></script>
+  <script src="../js/common/cookies.js"></script>
+  <script src="../js/common/bill.js"></script>
+  <script src="../js/admin/admin-layout.js"></script>
+  <script src="../js/admin/customers.js"></script>
+</body>
+</html>

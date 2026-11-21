@@ -1,0 +1,162 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function admin() {
+      return signedIn()
+        && request.auth.token.email_verified == true
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "Admin"
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isActive == true;
+    }
+
+    function validDemoOrder(orderId) {
+      let data = request.resource.data;
+      return signedIn()
+        && request.auth.token.email_verified == true
+        && get(/databases/$(database)/documents/customers/$(request.auth.uid)).data.active == true
+        && data.keys().hasOnly([
+          "orderId", "billNumber", "customerId", "customerName", "customerEmail",
+          "customerMobile", "shippingAddress", "items", "totalQuantity", "totalAmount",
+          "paymentType", "paymentMethod", "paymentStatus", "paymentId", "demoPayment",
+          "demoOnly", "stockReserved", "creditCharged", "status", "date", "createdAt", "updatedAt"
+        ])
+        && data.orderId == orderId
+        && data.customerId == request.auth.uid
+        && data.billNumber is string
+        && data.customerName is string
+        && data.customerEmail is string
+        && data.customerMobile is string
+        && data.shippingAddress is map
+        && data.items is list
+        && data.items.size() > 0
+        && data.items.size() <= 30
+        && data.totalQuantity is int
+        && data.totalQuantity > 0
+        && data.totalAmount is int
+        && data.totalAmount > 0
+        && data.paymentMethod in ["cod", "card_demo", "credit"]
+        && data.paymentType in ["cash", "card", "credit"]
+        && data.paymentStatus in ["pending", "paid", "on-credit"]
+        && ((data.paymentMethod == "cod" && data.paymentType == "cash" && data.paymentStatus == "pending")
+          || (data.paymentMethod == "card_demo" && data.paymentType == "card" && data.paymentStatus == "paid")
+          || (data.paymentMethod == "credit" && data.paymentType == "credit" && data.paymentStatus == "on-credit"))
+        && data.paymentId is string
+        && data.demoPayment == true
+        && data.demoOnly == true
+        && data.stockReserved == false
+        && data.creditCharged == false
+        && data.status == "pending"
+        && data.date is int
+        && data.createdAt is int
+        && data.updatedAt is int;
+    }
+
+    function linkedDemoPayment(paymentId) {
+      let data = request.resource.data;
+      let order = getAfter(/databases/$(database)/documents/orders/$(data.orderId)).data;
+      return signedIn()
+        && request.auth.token.email_verified == true
+        && data.keys().hasOnly([
+          "paymentId", "orderId", "customerId", "customerName", "amount", "method",
+          "paymentType", "status", "kind", "demo", "createdAt", "updatedAt"
+        ])
+        && data.paymentId == paymentId
+        && data.customerId == request.auth.uid
+        && data.demo == true
+        && data.kind == "order"
+        && data.orderId is string
+        && data.customerName is string
+        && data.amount is int
+        && data.amount > 0
+        && data.method in ["cod", "card_demo", "credit"]
+        && order.customerId == request.auth.uid
+        && order.paymentId == paymentId
+        && order.totalAmount == data.amount
+        && order.paymentMethod == data.method
+        && order.paymentStatus == data.status
+        && order.paymentType == data.paymentType;
+    }
+
+    function linkedDemoNotification(notificationId) {
+      let data = request.resource.data;
+      let order = getAfter(/databases/$(database)/documents/orders/$(data.orderId)).data;
+      return signedIn()
+        && request.auth.token.email_verified == true
+        && data.keys().hasOnly([
+          "id", "type", "orderId", "customerId", "customerName", "paymentMethod",
+          "amount", "message", "read", "createdAt"
+        ])
+        && data.id == notificationId
+        && data.type == "new-order"
+        && data.customerId == request.auth.uid
+        && data.orderId is string
+        && data.amount is int
+        && data.amount == order.totalAmount
+        && data.message is string
+        && data.createdAt is int
+        && order.customerId == request.auth.uid
+        && order.paymentId is string
+        && data.read == false;
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || admin());
+      allow write: if admin();
+    }
+
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if admin();
+    }
+
+    match /inventory/{productId} {
+      allow read: if true;
+      allow create, delete: if admin();
+      allow update: if admin();
+    }
+
+    match /customers/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || admin());
+      allow create: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(["id", "name", "email", "mobile", "creditLimit", "creditUsed", "active", "createdAt"])
+        && request.resource.data.id == uid
+        && request.resource.data.active == true
+        && request.resource.data.creditLimit == 0
+        && request.resource.data.creditUsed == 0;
+      allow update: if admin()
+        || (signedIn() && request.auth.uid == uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["name", "mobile"]));
+      allow delete: if admin();
+    }
+
+    match /orders/{orderId} {
+      allow read: if admin()
+        || (signedIn() && resource.data.customerId == request.auth.uid);
+      allow create: if admin() || validDemoOrder(orderId);
+      allow update, delete: if admin();
+    }
+
+    match /payments/{paymentId} {
+      allow read: if admin();
+      allow create: if admin() || linkedDemoPayment(paymentId);
+      allow update, delete: if admin();
+    }
+
+    match /adminNotifications/{notificationId} {
+      allow read, update: if admin();
+      allow create: if admin() || linkedDemoNotification(notificationId);
+      allow delete: if admin();
+    }
+
+    match /wishlists/{uid}/products/{productId} {
+      allow read: if signedIn() && (request.auth.uid == uid || admin());
+      allow create, update: if signedIn() && (request.auth.uid == uid || admin())
+        && request.resource.data.value == true;
+      allow delete: if signedIn() && (request.auth.uid == uid || admin());
+    }
+  }
+}

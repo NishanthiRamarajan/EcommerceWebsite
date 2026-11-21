@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My orders - Online Shopping</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/customer.css">
+</head>
+<body class="shop">
+<div id="app-header"></div>
+<div class="container page" id="ordersPage"><h1>My orders</h1><p class="hint">Only browser-local orders saved on this device are shown. Orders are filtered to your signed-in account.</p>
+<div class="filters" style="grid-template-columns:240px"><select id="fStatus" aria-label="Status"><option value="">All statuses</option><option value="placed">Placed</option><option value="confirmed">Confirmed</option><option value="shipped">Shipped</option><option value="delivered">Delivered</option><option value="cancelled">Cancelled</option></select></div>
+<div id="empty" class="empty hidden"><h3>No orders yet</h3><p class="muted">Orders you place will appear here.</p><a class="btn" href="products.html">Start shopping</a></div>
+<div id="tableBox"><div class="table-wrap"><table class="data"><thead><tr><th>Order ID</th><th>Date</th><th>Products</th><th>Payment</th><th class="num">Total</th><th>Status</th><th>Actions</th></tr></thead><tbody id="rows"></tbody></table></div><div id="pager" class="pager"></div></div></div>
+<div class="modal" id="orderModal"><div class="modal-box wide"><h2>Order details</h2><div id="billBox"></div><div class="modal-actions"><button class="btn btn-ghost" data-close type="button">Close</button><button class="btn" id="printCurrent" type="button">Print bill</button></div></div></div>
+<div id="app-footer"></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/api/firebase-config.js"></script>
+  <script src="../js/common/session.js"></script>
+  <script src="../js/api/auth-api.js"></script>
+  <script src="../js/api/database-api.js"></script>
+  <script src="../js/api/storage-api.js"></script>
+  <script src="../js/common/utils.js"></script>
+  <script src="../js/common/validation.js"></script>
+  <script src="../js/common/guard.js"></script>
+  <script src="../js/common/pagination.js"></script>
+  <script src="../js/common/cookies.js"></script>
+  <script src="../js/common/bill.js"></script>
+  <script src="../js/common/demo-store.js"></script>
+  <script src="../js/customer/shop.js"></script>
+  <script src="../js/customer/cart.js"></script>
+  <script src="../js/customer/wishlist.js"></script>
+  <script src="../js/customer/layout.js"></script>
+  <script src="../js/customer/orders.js"></script>
+</body>
+</html>

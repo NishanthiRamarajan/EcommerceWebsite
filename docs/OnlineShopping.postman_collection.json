@@ -1,0 +1,167 @@
+{
+  "info": {
+    "name": "Online Shopping - Firestore",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Set collection variables apiKey and projectId. Login saves idToken, refreshToken, and uid."
+  },
+  "variable": [
+    { "key": "apiKey", "value": "AIzaSyCDWcINlUqWWCEvbkhZNZ-8zvX5gnLeEUE" },
+    { "key": "projectId", "value": "ecommerce-33967" },
+    { "key": "uid", "value": "" },
+    { "key": "idToken", "value": "" },
+    { "key": "refreshToken", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "1 Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={{apiKey}}" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"YOUR_ADMIN_EMAIL\",\n  \"password\": \"YOUR_PASSWORD\",\n  \"returnSecureToken\": true\n}"
+            }
+          },
+          "event": [{
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "const r = pm.response.json();",
+                "pm.collectionVariables.set(\"idToken\", r.idToken);",
+                "pm.collectionVariables.set(\"refreshToken\", r.refreshToken);",
+                "pm.collectionVariables.set(\"uid\", r.localId);"
+              ]
+            }
+          }]
+        },
+        {
+          "name": "Send verification email",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key={{apiKey}}" },
+            "body": { "mode": "raw", "raw": "{\n  \"requestType\": \"VERIFY_EMAIL\",\n  \"idToken\": \"{{idToken}}\"\n}" }
+          }
+        },
+        {
+          "name": "Check verified email",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key={{apiKey}}" },
+            "body": { "mode": "raw", "raw": "{\n  \"idToken\": \"{{idToken}}\"\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2 Public Firestore reads",
+      "item": [
+        {
+          "name": "List categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://firestore.googleapis.com/v1/projects/{{projectId}}/databases/(default)/documents/categories?pageSize=1000&key={{apiKey}}" }
+          }
+        },
+        {
+          "name": "List products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "https://firestore.googleapis.com/v1/projects/{{projectId}}/databases/(default)/documents/inventory?pageSize=1000&key={{apiKey}}" }
+          }
+        },
+        {
+          "name": "Query products by category",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "https://firestore.googleapis.com/v1/projects/{{projectId}}/databases/(default)/documents:runQuery?key={{apiKey}}" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"structuredQuery\": {\n    \"from\": [{ \"collectionId\": \"inventory\" }],\n    \"where\": {\n      \"fieldFilter\": {\n        \"field\": { \"fieldPath\": \"catId\" },\n        \"op\": \"EQUAL\",\n        \"value\": { \"stringValue\": \"C-PHONES\" }\n      }\n    }\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3 Admin Firestore writes",
+      "item": [
+        {
+          "name": "Read my admin role document",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{idToken}}" }],
+            "url": { "raw": "https://firestore.googleapis.com/v1/projects/{{projectId}}/databases/(default)/documents/users/{{uid}}?key={{apiKey}}" }
+          }
+        },
+        {
+          "name": "Create category",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{idToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "https://firestore.googleapis.com/v1/projects/{{projectId}}/databases/(default)/documents/categories/C-TEST?key={{apiKey}}" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": {\n    \"id\": { \"stringValue\": \"C-TEST\" },\n    \"name\": { \"stringValue\": \"Test category\" },\n    \"active\": { \"booleanValue\": true }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "Create test product",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{idToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "https://firestore.googleapis.com/v1/projects/{{projectId}}/databases/(default)/documents/inventory/P-TEST?key={{apiKey}}" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": {\n    \"id\": { \"stringValue\": \"P-TEST\" },\n    \"catId\": { \"stringValue\": \"C-TEST\" },\n    \"title\": { \"stringValue\": \"Test product\" },\n    \"description\": { \"stringValue\": \"Temporary Postman test item\" },\n    \"quantity\": { \"integerValue\": \"5\" },\n    \"price\": { \"integerValue\": \"100\" },\n    \"imageUrl\": { \"stringValue\": \"\" },\n    \"storagePath\": { \"stringValue\": \"\" },\n    \"featured\": { \"booleanValue\": false },\n    \"active\": { \"booleanValue\": true },\n    \"soldCount\": { \"integerValue\": \"0\" },\n    \"createdAt\": { \"integerValue\": \"1763600000000\" },\n    \"updatedAt\": { \"integerValue\": \"1763600000000\" }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "Update category name",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{idToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "https://firestore.googleapis.com/v1/projects/{{projectId}}/databases/(default)/documents/categories/C-TEST?updateMask.fieldPaths=name&key={{apiKey}}" },
+            "body": { "mode": "raw", "raw": "{\n  \"fields\": { \"name\": { \"stringValue\": \"Phones\" } }\n}" }
+          }
+        },
+        {
+          "name": "Delete test product",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{idToken}}" }],
+            "url": { "raw": "https://firestore.googleapis.com/v1/projects/{{projectId}}/databases/(default)/documents/inventory/P-TEST?key={{apiKey}}" }
+          }
+        },
+        {
+          "name": "Delete category",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{idToken}}" }],
+            "url": { "raw": "https://firestore.googleapis.com/v1/projects/{{projectId}}/databases/(default)/documents/categories/C-TEST?key={{apiKey}}" }
+          }
+        }
+      ]
+    }
+  ]
+}

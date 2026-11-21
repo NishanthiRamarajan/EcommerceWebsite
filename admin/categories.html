@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories - Admin</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="admin" data-page="categories" >
+<div class="admin-shell"><aside id="sidebar"></aside><div class="admin-main"><header id="topbar"></header><main class="admin-content">
+<h1>Category Management</h1><div class="toolbar"><button class="btn" id="addCat" type="button">Add category</button></div><div class="table-wrap"><table class="data"><thead><tr><th>ID</th><th>Name</th><th>Status</th><th>Actions</th></tr></thead><tbody id="catRows"></tbody></table></div><div id="pager" class="pager"></div><div class="modal" id="catModal"><div class="modal-box"><h2><span id="catTitle">Add category</span></h2><form id="catForm" novalidate><div class="field"><label for="cId">Category ID (letters, numbers, - _)</label><input id="cId" type="text" maxlength="30"><span class="field-error" data-for="id"></span></div><div class="field"><label for="cName">Category name</label><input id="cName" type="text" maxlength="60"><span class="field-error" data-for="name"></span></div><div class="modal-actions"><button class="btn btn-ghost" data-close type="button">Cancel</button><button class="btn" type="submit">Save category</button></div></form></div></div>
+</main></div></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/api/firebase-config.js"></script>
+  <script src="../js/common/session.js"></script>
+  <script src="../js/api/auth-api.js"></script>
+  <script src="../js/api/database-api.js"></script>
+  <script src="../js/api/storage-api.js"></script>
+  <script src="../js/common/utils.js"></script>
+  <script src="../js/common/validation.js"></script>
+  <script src="../js/common/guard.js"></script>
+  <script src="../js/common/pagination.js"></script>
+  <script src="../js/common/cookies.js"></script>
+  <script src="../js/common/bill.js"></script>
+  <script src="../js/admin/admin-layout.js"></script>
+  <script src="../js/admin/category.js"></script>
+</body>
+</html>

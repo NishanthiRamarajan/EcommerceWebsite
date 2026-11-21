@@ -1,0 +1,176 @@
+{
+  "categories": {
+    "C-PHONES": {
+      "id": "C-PHONES",
+      "name": "Mobiles",
+      "active": true
+    },
+    "C-LAPTOPS": {
+      "id": "C-LAPTOPS",
+      "name": "Laptops",
+      "active": true
+    },
+    "C-AUDIO": {
+      "id": "C-AUDIO",
+      "name": "Audio",
+      "active": true
+    },
+    "C-ACCESSORIES": {
+      "id": "C-ACCESSORIES",
+      "name": "Accessories",
+      "active": true
+    }
+  },
+  "inventory": {
+    "P1001": {
+      "id": "P1001",
+      "catId": "C-PHONES",
+      "title": "Aurora 5G Smartphone 128GB",
+      "description": "6.5 inch AMOLED display, 50MP camera, 5000 mAh battery.",
+      "quantity": 42,
+      "price": 17999,
+      "imageUrl": "",
+      "storagePath": "",
+      "featured": true,
+      "active": true,
+      "soldCount": 18,
+      "createdAt": 1794909932082,
+      "updatedAt": 1794909932082
+    },
+    "P1002": {
+      "id": "P1002",
+      "catId": "C-PHONES",
+      "title": "Nova Lite 4G Smartphone 64GB",
+      "description": "Everyday phone with a big battery and fast charging.",
+      "quantity": 120,
+      "price": 8499,
+      "imageUrl": "",
+      "storagePath": "",
+      "featured": false,
+      "active": true,
+      "soldCount": 31,
+      "createdAt": 1793009132082,
+      "updatedAt": 1793009132082
+    },
+    "P1003": {
+      "id": "P1003",
+      "catId": "C-LAPTOPS",
+      "title": "Nimbus 14 Laptop, 16GB RAM, 512GB SSD",
+      "description": "Lightweight 14 inch laptop for study and office work.",
+      "quantity": 9,
+      "price": 46990,
+      "imageUrl": "",
+      "storagePath": "",
+      "featured": true,
+      "active": true,
+      "soldCount": 7,
+      "createdAt": 1794650732082,
+      "updatedAt": 1794650732082
+    },
+    "P1004": {
+      "id": "P1004",
+      "catId": "C-LAPTOPS",
+      "title": "Forge 15 Gaming Laptop",
+      "description": "15.6 inch 144Hz display with a dedicated graphics card.",
+      "quantity": 0,
+      "price": 78990,
+      "imageUrl": "",
+      "storagePath": "",
+      "featured": false,
+      "active": true,
+      "soldCount": 5,
+      "createdAt": 1791713132082,
+      "updatedAt": 1791713132082
+    },
+    "P1005": {
+      "id": "P1005",
+      "catId": "C-AUDIO",
+      "title": "PulseBuds Wireless Earbuds",
+      "description": "Bluetooth 5.3, 24 hours with the charging case.",
+      "quantity": 160,
+      "price": 1999,
+      "imageUrl": "",
+      "storagePath": "",
+      "featured": true,
+      "active": true,
+      "soldCount": 54,
+      "createdAt": 1794305132082,
+      "updatedAt": 1794305132082
+    },
+    "P1006": {
+      "id": "P1006",
+      "catId": "C-AUDIO",
+      "title": "Bassline Over-Ear Headphones",
+      "description": "Foldable wireless headphones with a built-in mic.",
+      "quantity": 14,
+      "price": 3499,
+      "imageUrl": "",
+      "storagePath": "",
+      "featured": false,
+      "active": true,
+      "soldCount": 12,
+      "createdAt": 1794996332082,
+      "updatedAt": 1794996332082
+    },
+    "P1007": {
+      "id": "P1007",
+      "catId": "C-ACCESSORIES",
+      "title": "30W Fast Charger with Cable",
+      "description": "USB-C wall charger, works with most phones.",
+      "quantity": 300,
+      "price": 899,
+      "imageUrl": "",
+      "storagePath": "",
+      "featured": false,
+      "active": true,
+      "soldCount": 76,
+      "createdAt": 1789985132082,
+      "updatedAt": 1789985132082
+    },
+    "P1008": {
+      "id": "P1008",
+      "catId": "C-ACCESSORIES",
+      "title": "10000 mAh Power Bank",
+      "description": "Slim power bank with two USB ports.",
+      "quantity": 55,
+      "price": 1299,
+      "imageUrl": "",
+      "storagePath": "",
+      "featured": true,
+      "active": true,
+      "soldCount": 23,
+      "createdAt": 1795082732082,
+      "updatedAt": 1795082732082
+    },
+    "P1009": {
+      "id": "P1009",
+      "catId": "C-ACCESSORIES",
+      "title": "Wireless Mouse and Keyboard Combo",
+      "description": "Quiet keys, 2.4 GHz USB receiver.",
+      "quantity": 11,
+      "price": 1599,
+      "imageUrl": "",
+      "storagePath": "",
+      "featured": false,
+      "active": true,
+      "soldCount": 9,
+      "createdAt": 1793873132082,
+      "updatedAt": 1793873132082
+    },
+    "P1010": {
+      "id": "P1010",
+      "catId": "C-AUDIO",
+      "title": "Pocket Bluetooth Speaker",
+      "description": "Water-resistant speaker with 12 hours of playback.",
+      "quantity": 75,
+      "price": 1799,
+      "imageUrl": "",
+      "storagePath": "",
+      "featured": false,
+      "active": true,
+      "soldCount": 0,
+      "createdAt": 1794823532082,
+      "updatedAt": 1794823532082
+    }
+  }
+}

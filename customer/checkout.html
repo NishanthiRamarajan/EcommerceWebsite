@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Online Shopping</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/customer.css">
+</head>
+<body class="shop">
+<div id="app-header"></div>
+<div class="container page" id="checkoutPage"><h1>Checkout</h1><div id="coMsg" aria-live="polite"></div>
+<div id="coBody"><form id="checkoutForm" class="cart-layout"><div><div id="verifyBox"></div>
+<section class="panel"><h2>Delivery details</h2><div class="checkout-grid">
+<div class="field"><label for="recipientName">Recipient name</label><input id="recipientName" type="text" maxlength="80" required><span class="field-error" data-for="recipientName"></span></div>
+<div class="field"><label for="deliveryMobile">Mobile number</label><input id="deliveryMobile" type="tel" inputmode="numeric" maxlength="10" required><span class="field-error" data-for="deliveryMobile"></span></div>
+<div class="field full"><label for="deliveryAddress">Street address</label><textarea id="deliveryAddress" rows="3" maxlength="300" required></textarea><span class="field-error" data-for="deliveryAddress"></span></div>
+<div class="field"><label for="deliveryCity">City</label><input id="deliveryCity" type="text" maxlength="80" required><span class="field-error" data-for="deliveryCity"></span></div>
+<div class="field"><label for="deliveryPin">PIN code</label><input id="deliveryPin" type="text" inputmode="numeric" maxlength="6" required><span class="field-error" data-for="deliveryPin"></span></div>
+</div></section>
+<section class="panel"><h2>Order summary</h2><div id="coItems"><div class="loading">Loading...</div></div></section>
+<section class="panel"><h2>Payment method</h2>
+<label class="opt"><input type="radio" name="pay" value="COD" checked> Cash on delivery</label>
+<label class="opt"><input type="radio" name="pay" value="CREDIT"> Store credit (simulated)</label>
+<div id="creditBox" class="credit-box hidden"></div>
+<p class="hint">Browser-local orders, stock, and credit are stored only in this browser. Payments are simulated; no money is collected and these records are separate from Firestore.</p></section></div>
+<aside id="coSummary" class="summary"></aside></form></div><div id="coDone" class="hidden"></div></div>
+<div id="app-footer"></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/api/firebase-config.js"></script>
+  <script src="../js/common/session.js"></script>
+  <script src="../js/api/auth-api.js"></script>
+  <script src="../js/api/database-api.js"></script>
+  <script src="../js/api/storage-api.js"></script>
+  <script src="../js/common/utils.js"></script>
+  <script src="../js/common/validation.js"></script>
+  <script src="../js/common/guard.js"></script>
+  <script src="../js/common/pagination.js"></script>
+  <script src="../js/common/cookies.js"></script>
+  <script src="../js/common/bill.js"></script>
+  <script src="../js/common/demo-store.js"></script>
+  <script src="../js/customer/shop.js"></script>
+  <script src="../js/customer/cart.js"></script>
+  <script src="../js/customer/wishlist.js"></script>
+  <script src="../js/customer/layout.js"></script>
+  <script src="../js/customer/checkout.js"></script>
+</body>
+</html>

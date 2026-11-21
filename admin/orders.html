@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders - Admin</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="admin" data-page="orders" >
+<div class="admin-shell"><aside id="sidebar"></aside><div class="admin-main"><header id="topbar"></header><main class="admin-content">
+<h1>Order Management</h1><p class="hint">This list contains browser-local orders from this device and is separate from Firestore orders.</p><div class="toolbar"><div><label for="fStatus">Order status</label><select id="fStatus"><option value="">All statuses</option><option value="pending">Placed</option><option value="confirmed">Confirmed</option><option value="shipped">Shipped</option><option value="delivered">Delivered</option><option value="cancelled">Cancelled</option></select></div><div><label for="fPayment">Payment method</label><select id="fPayment"><option value="">All methods</option><option value="cod">Cash on Delivery</option><option value="credit">Store credit</option></select></div><div class="grow"><label for="fQ">Search</label><input id="fQ" type="search" placeholder="Order ID, invoice or customer"></div><div><label for="dFrom">From</label><input id="dFrom" type="date"></div><div><label for="dTo">To</label><input id="dTo" type="date"></div></div><div class="table-wrap"><table class="data"><thead><tr><th>Order / Invoice</th><th>Date</th><th>Customer</th><th>Payment</th><th>Payment status</th><th class="num">Total</th><th>Status</th><th>Actions</th></tr></thead><tbody id="ordRows"></tbody></table></div><div id="pager" class="pager"></div><div class="modal" id="orderModal"><div class="modal-box wide"><h2>Invoice</h2><div id="billBox"></div><div class="modal-actions"><button class="btn btn-ghost" data-close type="button">Close</button><button class="btn" id="printCurrent" type="button">Print invoice</button></div></div></div><div class="modal" id="statusModal"><div class="modal-box"><h2>Update order status</h2><p id="stInfo" class="muted"></p><form id="stForm"><div class="field"><label for="stSel">New status</label><select id="stSel"></select></div><p class="hint">Cancelling restores this browser's local stock and simulated credit usage exactly once. No Firestore inventory or payments are changed.</p><div class="modal-actions"><button class="btn btn-ghost" data-close type="button">Close</button><button class="btn" type="submit">Update status</button></div></form></div></div>
+</main></div></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/api/firebase-config.js"></script>
+  <script src="../js/common/session.js"></script>
+  <script src="../js/api/auth-api.js"></script>
+  <script src="../js/api/database-api.js"></script>
+  <script src="../js/api/storage-api.js"></script>
+  <script src="../js/common/utils.js"></script>
+  <script src="../js/common/validation.js"></script>
+  <script src="../js/common/guard.js"></script>
+  <script src="../js/common/pagination.js"></script>
+  <script src="../js/common/cookies.js"></script>
+  <script src="../js/common/bill.js"></script>
+  <script src="../js/common/demo-store.js"></script>
+  <script src="../js/admin/admin-layout.js"></script>
+  <script src="../js/admin/orders.js"></script>
+</body>
+</html>

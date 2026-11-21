@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up - Online Shopping</title>
+  <link rel="stylesheet" href="../css/common.css">
+</head>
+<body class="auth-page">
+<main class="auth-card"><a class="brand-line" href="home.html">Online Shopping</a><h1>Create your account</h1><div id="message" class="message"></div><form id="registerForm" novalidate><div class="field"><label for="name">Name</label><input id="name" type="text" autocomplete="name"><span class="field-error" data-for="name"></span></div><div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email"><span class="field-error" data-for="email"></span></div><div class="field"><label for="mobile">Mobile number</label><input id="mobile" type="tel" maxlength="10" inputmode="numeric" autocomplete="tel"><span class="field-error" data-for="mobile"></span></div><div class="field"><label for="password">Password (8+ characters)</label><input id="password" type="password" autocomplete="new-password"><span class="field-error" data-for="password"></span></div><div class="field"><label for="confirmPassword">Confirm password</label><input id="confirmPassword" type="password" autocomplete="new-password"><span class="field-error" data-for="confirmPassword"></span></div><button id="registerBtn" class="btn btn-block" type="submit">Create account</button></form><div class="links"><a href="login.html">Already registered? Log in</a></div></main>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/api/firebase-config.js"></script>
+  <script src="../js/common/session.js"></script>
+  <script src="../js/api/auth-api.js"></script>
+  <script src="../js/api/database-api.js"></script>
+  <script src="../js/api/storage-api.js"></script>
+  <script src="../js/common/utils.js"></script>
+  <script src="../js/common/validation.js"></script>
+  <script src="../js/common/guard.js"></script>
+  <script src="../js/common/pagination.js"></script>
+  <script src="../js/common/cookies.js"></script>
+  <script src="../js/common/bill.js"></script>
+  <script src="../js/customer/auth.js"></script>
+</body>
+</html>
