@@ -1,0 +1,7 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin - Customers</title><link rel="stylesheet" href="../css/common.css"></head><body>
+<nav><b>Admin</b><a href="inventory.html">Inventory</a><a href="customers.html">Customers</a><button onclick="logout()">Logout</button></nav>
+<main><div class="card"><input id="sq" placeholder="Search name or email">
+<div class="tw"><table><thead><tr><th>Name</th><th>Email</th><th>Mobile</th><th>Credit Limit</th><th>Used</th><th>Available</th><th>Status</th><th>Actions</th></tr></thead><tbody id="tb"></tbody></table></div><div class="pg" id="pg"></div></div></main>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>var ROOT="../";</script><script src="../js/firebase-config.js"></script><script src="../js/common.js"></script><script src="../js/api.js"></script><script src="../js/customers.js"></script></body></html>

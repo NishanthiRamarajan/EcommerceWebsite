@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Online Shopping - Sign in</title><link rel="stylesheet" href="css/common.css"></head><body>
+<nav><b>🛒 Online Shopping</b></nav>
+<main style="max-width:420px"><div class="card">
+<div class="row"><button class="pri" data-f="fin">Sign In</button><button data-f="fup">Sign Up</button><button data-f="frs">Reset Password</button></div>
+<form id="fin" class="frm"><h3>Sign In</h3><p><input id="i_e" type="email" placeholder="Email" style="width:100%"></p><p><input id="i_p" type="password" placeholder="Password" style="width:100%"></p><p class="err-t" id="i_m"></p><button class="pri">Sign In</button></form>
+<form id="fup" class="frm" hidden><h3>Sign Up</h3>
+<p><input id="u_n" placeholder="Name" style="width:100%"><span class="err-t" id="u_n_e"></span></p>
+<p><input id="u_e" type="email" placeholder="Email" style="width:100%"><span class="err-t" id="u_e_e"></span></p>
+<p><input id="u_m" placeholder="Mobile (10 digits)" style="width:100%"><span class="err-t" id="u_m_e"></span></p>
+<p><input id="u_p" type="password" placeholder="Password (8+, letters & digits)" style="width:100%"><span class="err-t" id="u_p_e"></span></p>
+<p><input id="u_c" type="password" placeholder="Confirm password" style="width:100%"><span class="err-t" id="u_c_e"></span></p><button class="pri">Create account</button></form>
+<form id="frs" class="frm" hidden><h3>Reset Password</h3><p><input id="r_e" type="email" placeholder="Email" style="width:100%"></p><button class="pri">Send reset email</button></form>
+</div></main>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>var ROOT="";</script><script src="js/firebase-config.js"></script><script src="js/common.js"></script><script src="js/api.js"></script><script src="js/auth.js"></script></body></html>

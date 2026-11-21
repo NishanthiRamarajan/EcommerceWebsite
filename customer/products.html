@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shop</title><link rel="stylesheet" href="../css/common.css"></head><body>
+<nav><b>🛒 Online Shopping</b><a href="#cart">Cart (<span id="cc">0</span>)</a><button onclick="logout()">Logout</button></nav>
+<main><div class="card row"><input id="sq" placeholder="Search products" style="flex:1"><select id="fc"><option value="">All categories</option></select></div>
+<div class="grid" id="gr"></div><div class="pg" id="pg"></div>
+<div class="card" id="cart"><h3>Your Cart</h3><div class="tw"><table><thead><tr><th>Item</th><th>Price</th><th>Qty</th><th>Subtotal</th><th></th></tr></thead><tbody id="ct"></tbody></table></div>
+<h3>Grand Total: <span id="gt">₹0</span></h3><p class="err-t" id="cw"></p><button class="pri" disabled title="Checkout: see README">Checkout (next phase)</button></div></main>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>var ROOT="../";</script><script src="../js/firebase-config.js"></script><script src="../js/common.js"></script><script src="../js/api.js"></script><script src="../js/cart.js"></script></body></html>

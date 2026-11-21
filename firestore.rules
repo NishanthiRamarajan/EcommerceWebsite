@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore { match /databases/{db}/documents {
+  function admin() { return request.auth != null && request.auth.token.email == 'admin@example.com'; }
+  match /categories/{id} { allow read: if request.auth != null; allow write: if admin(); }
+  match /inventory/{id}  { allow read: if request.auth != null; allow write: if admin(); }
+  match /customers/{uid} {
+    allow read: if admin() || (request.auth != null && request.auth.uid == uid);
+    allow create: if admin() || (request.auth != null && request.auth.uid == uid && request.resource.data.creditLimit == 0 && request.resource.data.creditUsed == 0);
+    allow update, delete: if admin();
+  }
+  match /orders/{id} { allow read, write: if admin(); }
+} }
